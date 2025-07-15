@@ -1,0 +1,34 @@
+{
+  "name": "Personel Tools+",
+  "description": "Personel Tools.",
+  "version": "1.0",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "js": ["src/whell-zoom.js"]
+    },
+    {
+      "matches": ["https://*.github.com/*"],
+      "js": ["src/github.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "js": ["src/youtube-links.js"]
+    },
+    {
+      "matches": ["https://discord.com/*"],
+      "js": ["src/discord.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["src/boring-youtube.js"]
+    }
+  ],
+  "manifest_version": 2
+}
