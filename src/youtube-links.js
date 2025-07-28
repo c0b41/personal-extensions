@@ -37,7 +37,10 @@ document.addEventListener(
     const clickedAnchor = findClosestAnchor(event.target)
 
     // If an anchor tag was clicked AND it contains our target string
-    if (clickedAnchor && clickedAnchor.href.includes('youtube.com/watch?v=')) {
+    let videoUrl = new URL(clickedAnchor.href)
+
+    //console.log(videoUrl)
+    if (clickedAnchor && videoUrl.pathname !== 'watch' && !videoUrl.searchParams.get('t')) {
       // Prevent the default navigation and stop event propagation
       event.preventDefault()
       event.stopImmediatePropagation()
