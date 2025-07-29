@@ -36,19 +36,19 @@ document.addEventListener(
   function (event) {
     const clickedAnchor = findClosestAnchor(event.target)
 
-    // If an anchor tag was clicked AND it contains our target string
-    let videoUrl = new URL(clickedAnchor.href)
+    if (clickedAnchor && clickedAnchor.href) {
+      let videoUrl = new URL(clickedAnchor.href)
 
-    //console.log(videoUrl)
-    if (clickedAnchor && videoUrl.pathname !== 'watch' && !videoUrl.searchParams.get('t')) {
-      // Prevent the default navigation and stop event propagation
-      event.preventDefault()
-      event.stopImmediatePropagation()
+      if (videoUrl.pathname === '/watch' && !videoUrl.searchParams.get('t')) {
+        // Prevent the default navigation and stop event propagation
+        //event.preventDefault()
+        //event.stopImmediatePropagation()
+        //window.open(urlToOpen, '_blank')
 
-      const urlToOpen = cleanUrlParams(clickedAnchor.href)
+        event.target.href = cleanUrlParams(clickedAnchor.href)
 
-      window.open(urlToOpen, '_blank')
-      return
+        return event
+      }
     }
   },
   true
