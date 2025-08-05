@@ -59,11 +59,15 @@ const handleLinkClick = (event) => {
       event.preventDefault()
       event.stopImmediatePropagation()
       const urlToOpen = cleanUrlParams(clickedAnchor.href)
-      window.location.href = urlToOpen
+
+      if (event.ctrlKey || event.metaKey) {
+        window.open(urlToOpen, '_blank')
+      } else {
+        window.location.href = urlToOpen
+      }
     }
   } catch (e) {}
 }
-
 document.addEventListener('DOMContentLoaded', () => {
   updateAllRelevantLinks()
   const observer = new MutationObserver((mutations) => {
